@@ -89,7 +89,7 @@ def autor_mas_leido(libros):
         return
     
     autor_top = max(conteo_autores, key=conteo_autores.get)
-    print(f"El autor más leído en la biblioteca es '{autor_top}' con {conteo_autores[autor_top]} préstamos.")
+    print(f"El señor muerto que mas gente ha leido es '{autor_top}' con {conteo_autores[autor_top]} préstamos.")
 
 # ============================
 # DATOS DE EJEMPLO Y PRUEBAS
@@ -111,8 +111,9 @@ prestar_libro(libros, historial_usuarios, "ana", "Fahrenheit 451")
 
 # Préstamos del usuario "luis"
 print("\n--- Préstamos de luis ---")
-prestar_libro(libros, historial_usuarios, "luis", "1984")
+prestar_libro(libros, historial_usuarios, "luis", "Crónicas marcianas")
 prestar_libro(libros, historial_usuarios, "luis", "Rebelión en la granja")
+prestar_libro(libros, historial_usuarios, "luis", "1984")
 
 # Consultas
 print("\n--- Consultas de disponibilidad ---")
