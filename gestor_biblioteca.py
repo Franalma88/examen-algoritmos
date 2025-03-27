@@ -78,6 +78,19 @@ def recomendar_libro(libros, historial_usuarios, usuario):
     else:
         print(f"No hay más libros disponibles para recomendar de {autor_favorito}.")
 
+def autor_mas_leido(libros):
+    conteo_autores = {}
+    for libro in libros:
+        autor = libro["autor"]
+        conteo_autores[autor] = conteo_autores.get(autor, 0) + libro["prestamos"]
+    
+    if not conteo_autores:
+        print("No se ha prestado ningún libro todavía.")
+        return
+    
+    autor_top = max(conteo_autores, key=conteo_autores.get)
+    print(f"El autor más leído en la biblioteca es '{autor_top}' con {conteo_autores[autor_top]} préstamos.")
+
 # ============================
 # DATOS DE EJEMPLO Y PRUEBAS
 # ============================
@@ -91,17 +104,25 @@ agregar_libro(libros, "Rebelión en la granja", "George Orwell", 2)
 agregar_libro(libros, "Fahrenheit 451", "Ray Bradbury", 1)
 agregar_libro(libros, "Crónicas marcianas", "Ray Bradbury", 2)
 
-print("\n--- Préstamos ---")
+# Préstamos del usuario "ana"
+print("\n--- Préstamos de ana ---")
 prestar_libro(libros, historial_usuarios, "ana", "1984")
 prestar_libro(libros, historial_usuarios, "ana", "Fahrenheit 451")
-prestar_libro(libros, historial_usuarios, "ana", "Rebelión en la granja")
 
+# Préstamos del usuario "luis"
+print("\n--- Préstamos de luis ---")
+prestar_libro(libros, historial_usuarios, "luis", "1984")
+prestar_libro(libros, historial_usuarios, "luis", "Rebelión en la granja")
+
+# Consultas
+print("\n--- Consultas de disponibilidad ---")
+consultar_disponibilidad(libros, "1984")
+consultar_disponibilidad(libros, "Crónicas marcianas")
+
+# Devolución
 print("\n--- Devolución ---")
 devolver_libro(libros, "1984")
 
-print("\n--- Consultar Disponibilidad ---")
-consultar_disponibilidad(libros, "1984")
-consultar_disponibilidad(libros, "Fahrenheit 451")
-
-print("\n--- Historial y Recomendaciones ---")
-prestar_libro(libros, historial_usuarios, "ana", "Crónicas marcianas")
+# Autor más leído
+print("\n--- Autor más leído en la biblioteca ---")
+autor_mas_leido(libros)
